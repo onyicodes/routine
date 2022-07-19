@@ -56,14 +56,20 @@ class _MyRoutineAppState extends State<MyRoutineApp> {
           child: Consumer<AppStateManager>(
               builder: (context, appStateManager, child) {
             ThemeData theme;
-           
+            if (appStateManager.isLightTheme ?? true) {
+              theme = RoutineAppTheme.light();
+            } else {
+              theme = RoutineAppTheme.dark();
+            }
             return MaterialApp(
               debugShowCheckedModeBanner: false,
+              theme: theme,
               themeMode: appStateManager.isLightTheme == null
                   ? ThemeMode.system
                   : appStateManager.isLightTheme!
                       ? ThemeMode.light
                       : ThemeMode.dark,
+              darkTheme: RoutineAppTheme.dark(),
               title: 'Routine',
               home: HomePage(),
             );

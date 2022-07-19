@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Routine'),
       ),
+      body: Text('Routine'),
     );
   }
 }
