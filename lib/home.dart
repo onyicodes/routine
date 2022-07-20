@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:routine2/features/routine/presentation/pages/routine_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key,}) : super(key: key);
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Routine'),
       ),
-      body: Text('Routine'),
+      body: RoutinePage(),
     );
   }
 }

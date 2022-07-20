@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:routine2/core/state_manager/app_state_manager.dart';
+import 'package:routine2/features/routine/presentation/bloc/add_routine_bloc/add_routine_bloc.dart';
+import 'package:routine2/features/routine/presentation/bloc/delete_routine_bloc/delete_routine_bloc.dart';
+import 'package:routine2/features/routine/presentation/bloc/fetch_routines_bloc/fetch_routines_bloc.dart';
+import 'package:routine2/features/routine/presentation/bloc/mark_routine_completed_bloc/mark_routine_complete_bloc.dart';
+import 'package:routine2/features/routine/presentation/bloc/update_routine_bloc/update_routine_bloc.dart';
 import 'package:routine2/home.dart';
 import 'package:routine2/routine_theme.dart';
+import 'package:routine2/service_locator/routine_injector.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -52,7 +58,23 @@ class _MyRoutineAppState extends State<MyRoutineApp> {
          
         ],
         child: MultiBlocProvider(
-          providers: [],
+          providers: [
+           BlocProvider(
+              create: (_) => routineSl<FetchRoutinesBloc>(),
+            ),
+          BlocProvider(
+              create: (_) => routineSl<AddRoutineBloc>(),
+            ),
+          BlocProvider(
+              create: (_) => routineSl<UpdateRoutineBloc>(),
+            ),
+          BlocProvider(
+              create: (_) => routineSl<DeleteRoutineBloc>(),
+            ),
+          BlocProvider(
+              create: (_) => routineSl<MarkRoutineDoneBloc>(),
+            ),
+          ],
           child: Consumer<AppStateManager>(
               builder: (context, appStateManager, child) {
             ThemeData theme;
