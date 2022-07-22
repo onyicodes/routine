@@ -9,9 +9,14 @@ abstract class MarkingRoutineDoneEvent extends Equatable {
 
 class MarkRoutineDoneEvent extends MarkingRoutineDoneEvent {
   final int routineID;
-  const MarkRoutineDoneEvent(
-      {required this.routineID,});
+  final bool marked;
+  const MarkRoutineDoneEvent({
+    required this.routineID,
+    required this.marked
+  });
 
   @override
-  List<Object> get props => [routineID,];
+  List<Object> get props => [
+        routineID,
+      ];
 }

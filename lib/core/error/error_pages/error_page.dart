@@ -13,7 +13,7 @@ Widget errorPage({required BuildContext context, String errorMessage = 'Oops! an
        alignment: Alignment.center,
        child: SizedBox(
          width: 100,
-         child: Image.asset('assets/svg_icons/error_icons/unknown_error_emoji.png', width: 100,)),
+         child: Image.asset('assets/images/emoji/sad_face_emoji.png', width: 100,)),
      ),
       SizedBox(height: 20,),
       Align(

@@ -1,5 +1,7 @@
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:routine2/core/error/exceptions.dart';
 import 'package:routine2/core/error/failure.dart';
 import 'package:routine2/features/routine/data/datasource/routine_db_manager.dart';
@@ -12,9 +14,9 @@ class RoutineRepositoryImpl extends RoutineRepository{
   RoutineRepositoryImpl(
       {required this.remoteDataSource});
   @override
-  Future<Either<Failure, Routine>> addRoutine({ required String title, required String description, required String routineTime, required bool completed }) async{
+  Future<Either<Failure, Routine>> addRoutine({ required String title, required String description, required String routineTime, required bool completed, required String routineFrequency, required bool routineExpired }) async{
     try {
-      final routine = await remoteDataSource.addRoutine(title: title, description: description, routineTime: routineTime, completed: completed);
+      final routine = await remoteDataSource.addRoutine(title: title, description: description, routineTime: routineTime, completed: completed, routineFrequency: routineFrequency, routineExpired: routineExpired);
       return Right(routine);
     } on DbException {
       return Left(DbFailure());
@@ -31,9 +33,9 @@ class RoutineRepositoryImpl extends RoutineRepository{
   }
 
   @override
-  Future<Either<Failure, bool>> markRoutineDone({required int routineId}) async{
+  Future<Either<Failure, bool>> markRoutineDone({required int routineId, required bool marked}) async{
      try {
-      final routineMarkedDone = await remoteDataSource.markRoutineDone(routineId: routineId);
+      final routineMarkedDone = await remoteDataSource.markRoutineDone(routineId: routineId, marked: marked );
       return Right(routineMarkedDone);
     } on DbException {
       return Left(DbFailure());
@@ -41,9 +43,9 @@ class RoutineRepositoryImpl extends RoutineRepository{
   }
 
   @override
-  Future<Either<Failure, bool>> updateRoutine({required int routineId, required String title, required String description})async{
+  Future<Either<Failure, bool>> updateRoutine({required int routineId, required String title, required String description, required bool routineExpired})async{
      try {
-      final routineUpdated = await remoteDataSource.updateRoutine(routineId: routineId, title: title, description: description);
+      final routineUpdated = await remoteDataSource.updateRoutine(routineId: routineId, title: title, description: description, routineExpired:routineExpired );
       return Right(routineUpdated);
     } on DbException {
       return Left(DbFailure());
@@ -55,6 +57,17 @@ class RoutineRepositoryImpl extends RoutineRepository{
      try {
       final routineList = await remoteDataSource.fetchRoutines();
       return Right(routineList);
+    } on DbException {
+      return Left(DbFailure());
+    }
+  }
+
+
+  @override
+  Future<Either<Failure, Routine>> fetchRoutineWithID({required int routineID})async{
+     try {
+      final routine = await remoteDataSource.fetchRoutineWithID(routineID: routineID);
+      return Right(routine);
     } on DbException {
       return Left(DbFailure());
     }

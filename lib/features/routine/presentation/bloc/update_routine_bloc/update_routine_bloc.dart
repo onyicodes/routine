@@ -23,7 +23,9 @@ class UpdateRoutineBloc extends Bloc<UpdatingRoutineEvent, UpdateRoutineState> {
     final response = await updateRoutineUsecase(UpdateRoutineParams(
         title: event.title,
         description: event.description,
-        routineID: event.routineID));
+        routineID: event.routineID,
+        routineExpired: event.routineExpired
+        ));
 
     emit(response.fold(
         (failure) =>

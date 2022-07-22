@@ -11,6 +11,8 @@ RoutineModel _$RoutineModelFromJson(Map<String, dynamic> json) => RoutineModel(
       title: json['title'] as String,
       description: json['description'] as String,
       routineTime: json['routineTime'] as String,
+      routineFrequency: json['routineFrequency'] as String,
+      routineExpired: json['routineExpired'] as bool,
       completed: json['completed'] as bool,
     );
 
@@ -20,5 +22,7 @@ Map<String, dynamic> _$RoutineModelToJson(RoutineModel instance) =>
       'title': instance.title,
       'description': instance.description,
       'routineTime': instance.routineTime,
+      'routineFrequency': instance.routineFrequency,
+      'routineExpired': instance.routineExpired,
       'completed': instance.completed,
     };

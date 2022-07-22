@@ -11,11 +11,19 @@ class UpdateRoutineEvent extends UpdatingRoutineEvent {
   final String title;
   final String description;
   final int routineID;
+  final bool routineExpired;
   const UpdateRoutineEvent(
       {required this.title,
       required this.description,
-      required this.routineID});
+      required this.routineID,
+      required this.routineExpired
+      });
 
   @override
-  List<Object> get props => [title, description, routineID,];
+  List<Object> get props => [
+        title,
+        description,
+        routineID,
+        routineExpired
+      ];
 }

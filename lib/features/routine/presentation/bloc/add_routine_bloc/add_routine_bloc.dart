@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:routine2/core/error/handle_failure_response.dart';
 import 'package:routine2/core/params/routine_params.dart';
@@ -25,6 +26,8 @@ class AddRoutineBloc extends Bloc<AddRoutineEvent, AddRoutineState> {
         title: event.title,
         description: event.description,
         completed: event.completed,
+        routineFrequency: event.routineFrequency,
+        routineExpired: event.routineExpired,
         routineTime: event.routineTime));
 
     emit(response.fold(

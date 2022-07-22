@@ -12,7 +12,7 @@ Widget noResultFoundPage({required BuildContext context, String message = "No re
        alignment: Alignment.center,
        child: SizedBox(
          width: 100,
-         child: Image.asset('assets/svg_icons/error_icons/result_not_found_emoji.png', width: 100,)),
+         child: Image.asset('assets/images/emoji/just_there_emoji.png', width: 100,)),
      ),
 
       SizedBox(height: 50,),

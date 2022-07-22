@@ -22,7 +22,7 @@ class MarkRoutineDoneBloc
       MarkRoutineDoneEvent event, Emitter<MarkRoutineDoneState> emit) async {
     emit(MarkRoutineDoneLoading());
     final response = await markRoutineDoneUsecase(MarkRoutineDoneParams(
-       routineID : event.routineID,));
+       routineID : event.routineID, marked: event.marked));
 
     emit(response.fold(
         (failure) =>

@@ -5,9 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class RoutineAppTheme {
-  static Color lightThemeTextColor = const Color(0xff4d4d4d);
-  static Color darkThemeTextColor = const Color(0xffc4c4c4);
-
+static Color lightThemeTextColor = const Color(0xff4d4d4d);
+  static Color darkThemeTextColor = const Color(0xfffefefe);
 
   static TextTheme primaryTextThemeLight = TextTheme(
     bodyText1: GoogleFonts.roboto(
@@ -116,9 +115,15 @@ class RoutineAppTheme {
   );
   InputDecorationTheme inputDecorationTheme = const InputDecorationTheme();
 
-
-  static IconThemeData darkIconTheme = const IconThemeData(color: Color(0xffafafaf));
+  static IconThemeData darkIconTheme = IconThemeData(color: Color(0xffafafaf));
   static IconThemeData lightIconTheme = IconThemeData(color: Colors.grey[900]);
+  static DrawerThemeData drawerTheme = DrawerThemeData(
+    backgroundColor: const Color(0xff1F88C1),
+  );
+
+  static DrawerThemeData darkThemeDrawerTheme = DrawerThemeData(
+    backgroundColor: const Color(0xff0C4D69),
+  );
 
   static ThemeData light() {
     return ThemeData(
@@ -138,6 +143,7 @@ class RoutineAppTheme {
         canvasColor: const Color(0xffefefef),
         backgroundColor: Colors.white,
         dialogBackgroundColor: Colors.white,
+        drawerTheme: drawerTheme,
         shadowColor: Colors.grey,
         scaffoldBackgroundColor: const Color(0xffFDFEFF),
         appBarTheme: const AppBarTheme(
@@ -160,8 +166,9 @@ class RoutineAppTheme {
 
 
   static ThemeData dark() {
-    Color darkThemeColor = const Color(0xff00161f);
-    Color darkCardColor = const Color(0xff062735);
+    Color darkThemeColor = Color(0xff00161f);
+    Color darkCardColor = Color(0xff062735);
+    Color themeColor = Color(0xff00374E);
 
     return ThemeData(
         brightness: Brightness.dark,
@@ -174,29 +181,30 @@ class RoutineAppTheme {
         ),
         indicatorColor: const Color(0xff1F88C1),
         secondaryHeaderColor: const Color(0xff4d4d4d),
-        primaryColor: const Color(0xFF00FC3B),
+        primaryColor: const Color(0xff1F88C1),
         primaryColorDark: darkThemeColor,
         backgroundColor: darkThemeColor,
         dialogBackgroundColor: darkCardColor,
         canvasColor: darkCardColor,
         cardColor: darkCardColor,
+        drawerTheme: darkThemeDrawerTheme,
         scaffoldBackgroundColor: darkThemeColor,
         shadowColor: Colors.black87,
         iconTheme: darkIconTheme,
-        appBarTheme:  AppBarTheme(
+        appBarTheme: AppBarTheme(
             foregroundColor: Colors.black,
             backgroundColor: darkCardColor,
             systemOverlayStyle: SystemUiOverlayStyle(
                 statusBarColor: darkCardColor,
                 statusBarBrightness: Brightness.dark,
                 systemNavigationBarContrastEnforced: false,
-                systemNavigationBarColor: const Color(0xff1F88C1))),
+                systemNavigationBarColor: Color(0xff1F88C1))),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           foregroundColor: Colors.white,
           backgroundColor: Colors.black,
         ),
-        bottomNavigationBarTheme:BottomNavigationBarThemeData(
-            selectedItemColor: const Color(0xff29ABE2),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            selectedItemColor: Color(0xff29ABE2),
             backgroundColor: darkCardColor),
         primaryTextTheme: primaryTextThemeDark);
   }
