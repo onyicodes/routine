@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:provider/provider.dart';
 import 'package:routine2/features/routine/domain/entity/routine_entity.dart';
@@ -64,7 +62,7 @@ class _RoutineBottomSheetDetailState extends State<RoutineBottomSheetDetail> {
         child: SizedBox(
             height: 350,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              padding:const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20.0),
@@ -72,7 +70,7 @@ class _RoutineBottomSheetDetailState extends State<RoutineBottomSheetDetail> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                 const SizedBox(
                     height: 25,
                   ),
                   Row(
@@ -98,11 +96,11 @@ class _RoutineBottomSheetDetailState extends State<RoutineBottomSheetDetail> {
                       )
                     ],
                   ),
-                  SizedBox(
+                const  SizedBox(
                     height: 10,
                   ),
-                  Divider(),
-                  SizedBox(
+                const  Divider(),
+                const  SizedBox(
                     height: 5,
                   ),
                   Text(
@@ -113,14 +111,14 @@ class _RoutineBottomSheetDetailState extends State<RoutineBottomSheetDetail> {
                     height: 10,
                   ),
                   Text(routine.description),
-                  SizedBox(
+                 const SizedBox(
                     height: 10,
                   ),
                   Wrap(spacing: 10, children: [
                     Chip(label: Text(routine.routineFrequency)),
                     Chip(label: Text(routine.routineTime)),
                   ]),
-                  SizedBox(
+                 const SizedBox(
                     height: 20,
                   ),
                 ],

@@ -11,7 +11,7 @@ import 'package:routine2/features/routine/presentation/bloc/fetch_routine_with_i
 import 'package:routine2/features/routine/presentation/bloc/fetch_routines_bloc/fetch_routines_bloc.dart';
 import 'package:routine2/features/routine/presentation/bloc/mark_routine_completed_bloc/mark_routine_complete_bloc.dart';
 import 'package:routine2/features/routine/presentation/bloc/update_routine_bloc/update_routine_bloc.dart';
-import 'package:routine2/home.dart';
+
 import 'package:routine2/routine_theme.dart';
 import 'package:routine2/service_locator/routine_injector.dart';
 import 'package:routine2/splash_page.dart';
@@ -32,7 +32,7 @@ class _MyRoutineAppState extends State<MyRoutineApp> {
   late ThemeData theme;
    late final AppStateManager _appStateManager;
     late final RoutineStateManager _routineStateManager;
-  late final state;
+
 
   @override
   void initState() {
@@ -106,7 +106,7 @@ class _MyRoutineAppState extends State<MyRoutineApp> {
                       : ThemeMode.dark,
               darkTheme: RoutineAppTheme.dark(),
               title: 'Routine',
-              home: SplashScreen(),
+              home:const SplashScreen(),
                builder: (BuildContext context, Widget? child) {
                 return Material(
                   type: MaterialType.transparency,

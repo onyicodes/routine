@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:routine2/core/error/exceptions.dart';
 import 'package:routine2/features/routine/data/model/routine_model.dart';
 import 'package:sqflite/sqflite.dart';
@@ -57,7 +56,7 @@ class RoutineDbManagerImpl implements RoutineDbManager {
 
   Future<Database> initializeDb() async {
     Directory dir = await getApplicationDocumentsDirectory();
-    String path = dir.path + "schedule.db";
+    String path = "${dir.path}schedule.db";
 
     var dbTodos = await openDatabase(path, version: 1, onCreate: _createDb);
     return dbTodos;
@@ -85,13 +84,12 @@ class RoutineDbManagerImpl implements RoutineDbManager {
       colExpired: routineExpired.toString(),
       colCompleted: completed.toString()
     };
-    print(insertValue.toString());
+    
     Database db = await this.db;
     int insertID;
     try {
       insertID = await db.insert(routineTable, insertValue);
-      print(routineExpired);
-      print(routineFrequency);
+     
       Routine routine = RoutineModel(
           id: insertID,
           title: title,
@@ -100,8 +98,6 @@ class RoutineDbManagerImpl implements RoutineDbManager {
           description: description,
           routineTime: routineTime,
           completed: completed);
-      print(' heloo ${routine.routineFrequency}');
-      print(routine.toString());
       return routine;
     } catch (e) {
       throw DbException();
@@ -124,13 +120,13 @@ class RoutineDbManagerImpl implements RoutineDbManager {
   @override
   Future<List<Routine>> fetchRoutines() async {
     Database db = await this.db;
-    print('got here');
+ 
     try {
       List<Map<String, dynamic>> routineList = await db
           .rawQuery("SELECT * FROM $routineTable order by $colDate ASC");
       List<Routine> allRoutine = <Routine>[];
       for (Map<String, dynamic> routine in routineList) {
-        if (DateTime.now().isBefore(DateTime.parse(routine[colDate])) && DateTime.now().add(Duration(hours: 12)).isAfter(DateTime.parse(routine[colDate]))) {
+        if (DateTime.now().isBefore(DateTime.parse(routine[colDate])) && DateTime.now().add(const Duration(hours: 12)).isAfter(DateTime.parse(routine[colDate]))) {
           Map<String, dynamic> modiefiedRoutine = {
             colTitle: routine[colTitle],
             colDescription: routine[colDescription],
@@ -140,13 +136,11 @@ class RoutineDbManagerImpl implements RoutineDbManager {
             colId: routine[colId],
             colFrequency: routine[colFrequency]
           };
-          print(modiefiedRoutine);
           allRoutine.add(RoutineModel.fromJson(modiefiedRoutine));
         }
       }
       return allRoutine;
     } catch (e) {
-      print(e);
       throw DbException();
     }
   }
@@ -160,7 +154,7 @@ class RoutineDbManagerImpl implements RoutineDbManager {
       List<Routine> allRoutine = <Routine>[];
 
       for (Map<String, dynamic> routine in routineList) {
-        String s = routine[colDate];
+       
         Map<String, dynamic> modiefiedRoutine = {
           colTitle: routine[colTitle],
           colDescription: routine[colDescription],
@@ -170,12 +164,11 @@ class RoutineDbManagerImpl implements RoutineDbManager {
           colId: routine[colId],
           colFrequency: routine[colFrequency]
         };
-        print(modiefiedRoutine);
         allRoutine.add(RoutineModel.fromJson(modiefiedRoutine));
       }
       return allRoutine[0];
     } catch (e) {
-      print(e);
+    
       throw DbException();
     }
   }
@@ -184,7 +177,7 @@ class RoutineDbManagerImpl implements RoutineDbManager {
   Future<bool> markRoutineDone({required int routineId, required bool marked}) async {
     Database db = await this.db;
     Map<String, dynamic> updateValues = {
-      colCompleted: marked,
+      colCompleted: marked.toString(),
     };
     try {
       await db.update(routineTable, updateValues,

@@ -88,8 +88,8 @@ yearlylyScheduleCalender(
 
 NotificationCalendar notificationSchedulePlannar(
     {required String routineFrequency, required String time}) {
-  DateTime date = DateTime.parse(time);
-  date.subtract(Duration(minutes: 5));
+  DateTime subTime= DateTime.parse(time);
+  DateTime date = subTime.subtract(const Duration(minutes: 5));
   if (routineFrequency == 'Hourly') {
     return hourlyScheduleCalender(hour: date.hour, minute: date.minute);
   } else if (routineFrequency == 'Daily') {
@@ -109,7 +109,6 @@ NotificationCalendar notificationSchedulePlannar(
         hour: date.hour,
         minute: date.minute);
   } else {
-    print('wetin dey happen');
     return yearlylyScheduleCalender(
         year: date.year,
         month: date.month,
@@ -122,7 +121,6 @@ NotificationCalendar notificationSchedulePlannar(
 
 Future<void> scheduleAwesomeNotification(
     {required Routine routine, required String time}) async {
-  print('testing time$time');
   int uniqueID = createUniqueId();
 
   await AwesomeNotifications().createNotification(

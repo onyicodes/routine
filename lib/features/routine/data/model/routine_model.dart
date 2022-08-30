@@ -1,18 +1,27 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: overridden_fields
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:routine2/features/routine/domain/entity/routine_entity.dart';
 
 part 'routine_model.gofa.dart';
 
 @JsonSerializable()
+// ignore: must_be_immutable
 class RoutineModel extends Routine {
+  @override
   final int id;
+  @override
   final String title;
+  @override
   final String description;
+  @override
   final String routineTime;
+  @override
   final String routineFrequency;
+  @override
   bool routineExpired;
-   bool completed;
+   @override
+  bool completed;
 
   RoutineModel(
       {required this.id,

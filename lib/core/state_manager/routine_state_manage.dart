@@ -27,19 +27,19 @@ class RoutineStateManager extends ChangeNotifier {
   set setActiveRoutineList(List<Routine> routineList) {
     _activeRoutineList = routineList;
     _activeRoutineList.sort((a, b) => a.routineTime.compareTo(b.routineTime));
-   if(_activeRoutineList.isNotEmpty){
-     DateTime firstRoutineTime =
-        DateTime.parse(_activeRoutineList[0].routineTime);
-    DateTime now = DateTime.now();
-    Duration remainingTime = firstRoutineTime.difference(now);
-    if (remainingTime.inHours != 0) {
-      _nextUpText =
-          'Your have ${remainingTime.inHours} hours more to the next routine check';
-    } else {
-      _nextUpText =
-          'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
+    if (_activeRoutineList.isNotEmpty) {
+      DateTime firstRoutineTime =
+          DateTime.parse(_activeRoutineList[0].routineTime);
+      DateTime now = DateTime.now();
+      Duration remainingTime = firstRoutineTime.difference(now);
+      if (remainingTime.inHours != 0) {
+        _nextUpText =
+            'Your have ${remainingTime.inHours} hours more to the next routine check';
+      } else {
+        _nextUpText =
+            'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
+      }
     }
-   }
 
     notifyListeners();
   }
@@ -47,19 +47,19 @@ class RoutineStateManager extends ChangeNotifier {
   set addToActiveRoutineList(Routine routineList) {
     _activeRoutineList.add(routineList);
     _activeRoutineList.sort((a, b) => a.routineTime.compareTo(b.routineTime));
-    if(_activeRoutineList.isNotEmpty){
-     DateTime firstRoutineTime =
-        DateTime.parse(_activeRoutineList[0].routineTime);
-    DateTime now = DateTime.now();
-    Duration remainingTime = firstRoutineTime.difference(now);
-    if (remainingTime.inHours != 0) {
-      _nextUpText =
-          'Your have ${remainingTime.inHours} hours more to the next routine check';
-    } else {
-      _nextUpText =
-          'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
+    if (_activeRoutineList.isNotEmpty) {
+      DateTime firstRoutineTime =
+          DateTime.parse(_activeRoutineList[0].routineTime);
+      DateTime now = DateTime.now();
+      Duration remainingTime = firstRoutineTime.difference(now);
+      if (remainingTime.inHours != 0) {
+        _nextUpText =
+            'Your have ${remainingTime.inHours} hours more to the next routine check';
+      } else {
+        _nextUpText =
+            'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
+      }
     }
-   }
     notifyListeners();
   }
 
@@ -74,7 +74,7 @@ class RoutineStateManager extends ChangeNotifier {
       _activeRoutineList[routineIndex].description = description;
       _activeRoutineList[routineIndex].title = title;
     }
-     DateTime firstRoutineTime =
+    DateTime firstRoutineTime =
         DateTime.parse(_activeRoutineList[0].routineTime);
     DateTime now = DateTime.now();
     Duration remainingTime = firstRoutineTime.difference(now);
@@ -95,38 +95,38 @@ class RoutineStateManager extends ChangeNotifier {
 
   set setCurrentRoutine(Routine? routine) {
     _currentRoutine = routine;
-    if(_activeRoutineList.isNotEmpty){
-     DateTime firstRoutineTime =
-        DateTime.parse(_activeRoutineList[0].routineTime);
-    DateTime now = DateTime.now();
-    Duration remainingTime = firstRoutineTime.difference(now);
-    if (remainingTime.inHours != 0) {
-      _nextUpText =
-          'Your have ${remainingTime.inHours} hours more to the next routine check';
-    } else {
-      _nextUpText =
-          'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
+    if (_activeRoutineList.isNotEmpty) {
+      DateTime firstRoutineTime =
+          DateTime.parse(_activeRoutineList[0].routineTime);
+      DateTime now = DateTime.now();
+      Duration remainingTime = firstRoutineTime.difference(now);
+      if (remainingTime.inHours != 0) {
+        _nextUpText =
+            'Your have ${remainingTime.inHours} hours more to the next routine check';
+      } else {
+        _nextUpText =
+            'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
+      }
     }
-   }
     notifyListeners();
   }
 
   markCompletedRoutineID(int index, int routineID) {
     _activeRoutineList[index].completed = true;
     _missedRoutineIDs.add(routineID);
-    if(_activeRoutineList.isNotEmpty){
-     DateTime firstRoutineTime =
-        DateTime.parse(_activeRoutineList[0].routineTime);
-    DateTime now = DateTime.now();
-    Duration remainingTime = firstRoutineTime.difference(now);
-    if (remainingTime.inHours != 0) {
-      _nextUpText =
-          'Your have ${remainingTime.inHours} hours more to the next routine check';
-    } else {
-      _nextUpText =
-          'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
+    if (_activeRoutineList.isNotEmpty) {
+      DateTime firstRoutineTime =
+          DateTime.parse(_activeRoutineList[0].routineTime);
+      DateTime now = DateTime.now();
+      Duration remainingTime = firstRoutineTime.difference(now);
+      if (remainingTime.inHours != 0) {
+        _nextUpText =
+            'Your have ${remainingTime.inHours} hours more to the next routine check';
+      } else {
+        _nextUpText =
+            'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
+      }
     }
-   }
     notifyListeners();
   }
 
@@ -150,8 +150,12 @@ class RoutineStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  Routine? getRoutineWithID(int routineID) {
+  set setRoutineChecked(bool routineChecked) {
     _routineChecked = true;
+    notifyListeners();
+  }
+
+  Routine? getRoutineWithID(int routineID) {
     for (Routine routine in _activeRoutineList) {
       if (routine.id == routineID) {
         return routine;

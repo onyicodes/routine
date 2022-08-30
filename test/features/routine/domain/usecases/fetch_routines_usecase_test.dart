@@ -7,7 +7,8 @@ import 'package:routine2/features/routine/domain/entity/routine_entity.dart';
 import 'package:routine2/features/routine/domain/repository/routine_repository_impl.dart';
 import 'package:routine2/features/routine/domain/usecase/routine_usecases.dart';
 
-import 'fetch_routines_usecase.mocks.dart';
+
+import 'fetch_routines_usecase_test.mocks.dart';
 
 @GenerateMocks([RoutineRepository])
 void main() {

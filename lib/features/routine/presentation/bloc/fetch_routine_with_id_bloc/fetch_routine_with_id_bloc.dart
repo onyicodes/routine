@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:routine2/core/error/handle_failure_response.dart';
 import 'package:routine2/core/params/fetch_routine_param.dart';
-import 'package:routine2/core/usecase/usecase_builder.dart';
 import 'package:routine2/features/routine/domain/entity/routine_entity.dart';
 import 'package:routine2/features/routine/domain/usecase/routine_usecases.dart';
 

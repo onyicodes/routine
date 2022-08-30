@@ -26,7 +26,7 @@ class _RoutinListLoadedState extends State<RoutinListLoaded> {
           builder: (context, routineStateManager, child) {
         return Column(
           children: [
-            SizedBox(
+           const SizedBox(
               height: 20,
             ),
             if (routineStateManager.getCurrentRoutine != null)
@@ -34,7 +34,7 @@ class _RoutinListLoadedState extends State<RoutinListLoaded> {
                 'Current Task',
                 style: primaryTextTheme.headline2,
               ),
-            SizedBox(
+           const SizedBox(
               height: 20,
             ),
             if (routineStateManager.getCurrentRoutine != null)
@@ -47,7 +47,7 @@ class _RoutinListLoadedState extends State<RoutinListLoaded> {
                       BlocConsumer<MarkRoutineDoneBloc, MarkRoutineDoneState>(
                           listener: (context, state) {
                         if (state is MarkRoutineDoneLoaded) {
-                          Future.delayed(Duration(milliseconds: 500), () {});
+                          Future.delayed(const Duration(milliseconds: 500), () {});
                         }
                       }, builder: (context, state) {
                         return Checkbox(
@@ -71,7 +71,7 @@ class _RoutinListLoadedState extends State<RoutinListLoaded> {
                             if (value != null && value) {
                               routineStateManager.setCompletedRoutineID(
                                   routineStateManager.getCurrentRoutine!.id,
-                                  completed: value as bool);
+                                  completed: value);
                                BlocProvider.of<MarkRoutineDoneBloc>(context).add(
                                 MarkRoutineDoneEvent(
                                     routineID: routineStateManager
@@ -111,21 +111,20 @@ class _RoutinListLoadedState extends State<RoutinListLoaded> {
                   style: primaryTextTheme.headline4,
                 ),
               ),
-            SizedBox(height: 20),
+           const  SizedBox(height: 20),
             Text(
               'Up Next',
               style: primaryTextTheme.headline2,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ListView.builder(
                 shrinkWrap: true,
                 itemCount: routineStateManager.getActiveRoutineList.length,
-                physics: NeverScrollableScrollPhysics(),
+                physics:const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  DateFormat dateFormat = DateFormat.MMMEd();
-                  bool routineCompleted = false;
+                  
                   return Card(
                     color: Theme.of(context).cardColor,
                     elevation: 2.0,
@@ -148,6 +147,6 @@ class _RoutinListLoadedState extends State<RoutinListLoaded> {
         );
       }),
     );
-    ;
+    
   }
 }

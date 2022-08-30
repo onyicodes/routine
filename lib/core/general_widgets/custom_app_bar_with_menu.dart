@@ -9,14 +9,9 @@ AppBar customAppBarWithMenu(
     required BuildContext context,
     void Function()? onTapped,
     required TextTheme primaryTextTheme}) {
-  String fileType = profilePicUrl.split('.').last;
-  bool isSvgIcon = false;
-  if (fileType == 'svg') {
-    isSvgIcon = true;
-  }
+ 
 
-  bool? isLightTheme = Provider.of<AppStateManager>(context).isLightTheme;
-
+  
   return AppBar(
     centerTitle: true,
     title: Text(
@@ -24,11 +19,11 @@ AppBar customAppBarWithMenu(
             style: primaryTextTheme.headline2,
           ),
     leading: Padding(
-      padding: EdgeInsets.all(5),
+      padding:const EdgeInsets.all(5),
       child: IconButton(
         onPressed: onTapped,
         iconSize: 30,
-        icon: SizedBox(
+        icon:const SizedBox(
           child: CircleAvatar(
                   radius: 15,
                   )
@@ -62,7 +57,7 @@ AppBar customAppBarWithMenu(
                                   width: 11,
                                   decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(50)),
+                                       const BorderRadius.all(Radius.circular(50)),
                                     border: Border.all(
                                         color:
                                             Theme.of(context).backgroundColor,

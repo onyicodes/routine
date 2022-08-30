@@ -18,7 +18,6 @@ class _CalculateRoutineCheckPerformanceState extends State<CalculateRoutineCheck
   late String completionPercent;
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
    numberOfRoutineCompleted = Provider.of<RoutineStateManager>(context, listen: false).completedRoutineIDs.length;
    numberOfRoutineMissed = Provider.of<RoutineStateManager>(context, listen: false).missedRoutineIDs.length;
@@ -36,9 +35,9 @@ class _CalculateRoutineCheckPerformanceState extends State<CalculateRoutineCheck
     physics: const NeverScrollableScrollPhysics(),
     shrinkWrap: true,
     children: [
-      SizedBox(height: 50,),
+     const  SizedBox(height: 50,),
       Center(child: Text('Performance result : $completionPercent% ', style: primaryTextTheme.headline2,)),
-      SizedBox(height: 100,),
+     const SizedBox(height: 100,),
       int.parse(completionPercent) ==0 && (numberOfRoutineCompleted+ numberOfRoutineMissed)==0?/// no routine missed or marked
      Align(
        alignment: Alignment.center,
@@ -57,7 +56,7 @@ class _CalculateRoutineCheckPerformanceState extends State<CalculateRoutineCheck
        child: SvgPicture.asset('assets/svg/thumbs.svg', width: 150,),
      ),/// completed more than 70 percent of the routines
 
-      SizedBox(height: 50,),
+     const SizedBox(height: 50,),
       Align(
         alignment: Alignment.center,
         child: SizedBox(
@@ -65,8 +64,8 @@ class _CalculateRoutineCheckPerformanceState extends State<CalculateRoutineCheck
           child: Text(int.parse(completionPercent) ==0 && (numberOfRoutineCompleted+ numberOfRoutineMissed)==0?
           'No routine performed so far. \nSo none missed, none caught':int.parse(completionPercent) < 70?'Umm, you have missed most of your routines':'Good job, you have over 70% check rate ', textAlign: TextAlign.center, style: primaryTextTheme.headline3!.copyWith(color: Theme.of(context).primaryColor),),
         )),
-      SizedBox(height: 20,),
-      SizedBox(height: 30,),
+     const SizedBox(height: 20,),
+     const SizedBox(height: 30,),
       
     ],
        ),

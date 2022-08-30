@@ -115,14 +115,14 @@ static Color lightThemeTextColor = const Color(0xff4d4d4d);
   );
   InputDecorationTheme inputDecorationTheme = const InputDecorationTheme();
 
-  static IconThemeData darkIconTheme = IconThemeData(color: Color(0xffafafaf));
+  static IconThemeData darkIconTheme = const IconThemeData(color: Color(0xffafafaf));
   static IconThemeData lightIconTheme = IconThemeData(color: Colors.grey[900]);
-  static DrawerThemeData drawerTheme = DrawerThemeData(
-    backgroundColor: const Color(0xff1F88C1),
+  static DrawerThemeData drawerTheme = const DrawerThemeData(
+    backgroundColor:  Color(0xff1F88C1),
   );
 
-  static DrawerThemeData darkThemeDrawerTheme = DrawerThemeData(
-    backgroundColor: const Color(0xff0C4D69),
+  static DrawerThemeData darkThemeDrawerTheme =const DrawerThemeData(
+    backgroundColor: Color(0xff0C4D69),
   );
 
   static ThemeData light() {
@@ -166,9 +166,9 @@ static Color lightThemeTextColor = const Color(0xff4d4d4d);
 
 
   static ThemeData dark() {
-    Color darkThemeColor = Color(0xff00161f);
-    Color darkCardColor = Color(0xff062735);
-    Color themeColor = Color(0xff00374E);
+    Color darkThemeColor = const Color(0xff00161f);
+    Color darkCardColor = const Color(0xff062735);
+    
 
     return ThemeData(
         brightness: Brightness.dark,
@@ -198,13 +198,13 @@ static Color lightThemeTextColor = const Color(0xff4d4d4d);
                 statusBarColor: darkCardColor,
                 statusBarBrightness: Brightness.dark,
                 systemNavigationBarContrastEnforced: false,
-                systemNavigationBarColor: Color(0xff1F88C1))),
+                systemNavigationBarColor: const Color(0xff1F88C1))),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           foregroundColor: Colors.white,
           backgroundColor: Colors.black,
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Color(0xff29ABE2),
+            selectedItemColor: const Color(0xff29ABE2),
             backgroundColor: darkCardColor),
         primaryTextTheme: primaryTextThemeDark);
   }

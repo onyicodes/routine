@@ -9,12 +9,11 @@ import 'package:routine2/core/state_manager/routine_state_manage.dart';
 import 'package:routine2/features/routine/presentation/bloc/fetch_routines_bloc/fetch_routines_bloc.dart';
 import 'package:routine2/features/routine/presentation/pages/add_routine_page.dart';
 import 'package:routine2/features/routine/presentation/pages/routine_performance_page.dart';
-import 'package:routine2/features/routine/presentation/widgets/routine_page_widgets/routine_bottom_sheet_details.dart';
 import 'package:routine2/features/routine/presentation/widgets/routine_page_widgets/routine_loaded_state.dart';
 import 'package:provider/provider.dart';
 
 class RoutinePage extends StatefulWidget {
-  RoutinePage({Key? key}) : super(key: key);
+  const RoutinePage({Key? key}) : super(key: key);
 
   @override
   State<RoutinePage> createState() => _RoutinePageState();
@@ -53,7 +52,7 @@ class _RoutinePageState extends State<RoutinePage> {
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
-                          CalculateRoutineCheckPerformance()));
+                         const CalculateRoutineCheckPerformance()));
                 },
                 icon: Icon(
                   Icons.calculate_outlined,
@@ -65,11 +64,11 @@ class _RoutinePageState extends State<RoutinePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => CreateRoutine()));
+              .push(MaterialPageRoute(builder: (context) =>const CreateRoutine()));
         },
         backgroundColor: Theme.of(context).primaryColor,
         tooltip: 'Add new Routine',
-        child: new Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       body: BlocConsumer<FetchRoutinesBloc, FetchRoutinesState>(
         listener: (context, state) {
@@ -95,7 +94,7 @@ class _RoutinePageState extends State<RoutinePage> {
                               errorMessage: state.errorMessage,
                               onTapped: () {
                                 BlocProvider.of<FetchRoutinesBloc>(context)
-                                    .add(FetchAllRoutinesEvent());
+                                    .add(const FetchAllRoutinesEvent());
                               })
                           : Container();
         },

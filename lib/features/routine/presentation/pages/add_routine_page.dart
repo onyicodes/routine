@@ -1,7 +1,8 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+
 import 'package:routine2/core/general_widgets/custom_app_bar.dart';
 import 'package:routine2/core/state_manager/routine_state_manage.dart';
 import 'package:routine2/core/toasts/toast_loading.dart';
@@ -10,7 +11,6 @@ import 'package:routine2/core/utils/notification_functions.dart';
 import 'package:routine2/features/routine/domain/entity/routine_entity.dart';
 import 'package:routine2/features/routine/presentation/bloc/add_routine_bloc/add_routine_bloc.dart';
 import 'package:routine2/features/routine/presentation/bloc/update_routine_bloc/update_routine_bloc.dart';
-import 'package:provider/provider.dart';
 
 class CreateRoutine extends StatefulWidget {
   const CreateRoutine({Key? key, this.routine, this.index}) : super(key: key);
@@ -18,13 +18,10 @@ class CreateRoutine extends StatefulWidget {
   final int? index;
 
   @override
-  State<StatefulWidget> createState() {
-    return CreateRoutineState(routine: routine, index: index);
-  }
+  _CreateRoutineState createState() => _CreateRoutineState();
 }
 
-class CreateRoutineState extends State {
-  CreateRoutineState({this.routine, this.index});
+class _CreateRoutineState extends State<CreateRoutine> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   List<String> weekdays = [
@@ -48,6 +45,8 @@ class CreateRoutineState extends State {
   @override
   void initState() {
     super.initState();
+    routine = widget.routine;
+    index = widget.index;
     if (routine != null) {
       titleController = TextEditingController(text: routine!.title);
       descriptionController = TextEditingController(text: routine!.description);
@@ -93,7 +92,7 @@ class CreateRoutineState extends State {
                   }
                 },
                 style: ButtonStyle(
-                  fixedSize: MaterialStateProperty.all(Size(50, 20)),
+                  fixedSize: MaterialStateProperty.all(const Size(50, 20)),
                   backgroundColor: MaterialStateProperty.all(
                     Theme.of(context).primaryColor,
                   ),
@@ -114,15 +113,14 @@ class CreateRoutineState extends State {
                 routine: state.returnedRoutine,
                 time: state.returnedRoutine.routineTime);
 
-            print(state.returnedRoutine.toString());
-            Future.delayed(Duration(milliseconds: 500), () {
+            Future.delayed(const Duration(milliseconds: 500), () {
               toastLoading(isLoading: false, loadingMessage: '');
               Navigator.of(context).pop();
             });
           }
         }, builder: (context, state) {
           return Padding(
-            padding: EdgeInsets.only(top: 35.0, left: 10.0, right: 10.0),
+            padding: const EdgeInsets.only(top: 35.0, left: 10.0, right: 10.0),
             child: ListView(children: <Widget>[
               BlocListener<UpdateRoutineBloc, UpdateRoutineState>(
                 listener: ((context, state) {
@@ -132,7 +130,7 @@ class CreateRoutineState extends State {
                             title: titleController.text,
                             description: descriptionController.text,
                             routineIndex: index);
-                    Future.delayed(Duration(milliseconds: 500), () {
+                    Future.delayed(const Duration(milliseconds: 500), () {
                       // toastLoading(isLoading: false, loadingMessage: '');
                       Navigator.of(context).pop();
                     });
@@ -168,7 +166,7 @@ class CreateRoutineState extends State {
                             borderRadius: BorderRadius.circular(5.0))),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                    padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                     child: TextField(
                       controller: descriptionController,
                       style: primaryTextTheme.bodyText1,
@@ -193,57 +191,52 @@ class CreateRoutineState extends State {
                     ),
                   ),
                   if (routine == null)
-                 
-                        Text(
-                          'Routine time :',
-                          style: primaryTextTheme.headline6,
-                        ),
-                     
-                    if (routine == null)
-                  DateTimePicker(
-                    type: DateTimePickerType.dateTime,
-                    dateMask: 'd MMM, yyyy hh:mm aa',
-                    initialValue: selectedTime,
-                    initialTime: TimeOfDay.fromDateTime(
-                        DateTime.now().add(Duration(hours: 1))),
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime(2100),
-                    icon: Icon(Icons.event),
-                    dateLabelText: 'Date and Time',
-                    selectableDayPredicate: (date) {
-                      // Disable weekend days to select from the calendar
-                      // final dateDifference = date.difference(
-                      //     DateTime.now().subtract(Duration(days: 1)));
-                      // if (dateDifference.inDays > 1) {
-                      //   return true;
-                      // } else {
-                      //   return false;
-                      // }
+                    Text(
+                      'Routine time :',
+                      style: primaryTextTheme.headline6,
+                    ),
+                  if (routine == null)
+                    DateTimePicker(
+                      type: DateTimePickerType.dateTime,
+                      dateMask: 'd MMM, yyyy hh:mm aa',
+                      initialValue: selectedTime,
+                      initialTime: TimeOfDay.fromDateTime(
+                          DateTime.now().add(const Duration(hours: 1))),
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(2100),
+                      icon: const Icon(Icons.event),
+                      dateLabelText: 'Date and Time',
+                      selectableDayPredicate: (date) {
+                        // Disable weekend days to select from the calendar
+                        // final dateDifference = date.difference(
+                        //     DateTime.now().subtract(Duration(days: 1)));
+                        // if (dateDifference.inDays > 1) {
+                        //   return true;
+                        // } else {
+                        //   return false;
+                        // }
 
-                      return true;
-                    },
-                    onChanged: (val) {
-                      setState(() {
-                        print(val);
-                        selectedTime = val;
-                        timeEntered = true;
-                        invalidTimeEntered = false;
-                      });
-                    },
-                    validator: (val) {
-                      print(val);
-                      return null;
-                    },
-                    onSaved: (val) {
-                      setState(() {
-                        print(val);
-                        timeEntered = true;
-                        invalidTimeEntered = false;
-                      });
-                    },
-                  ),
-                  SizedBox(
+                        return true;
+                      },
+                      onChanged: (val) {
+                        setState(() {
+                          selectedTime = val;
+                          timeEntered = true;
+                          invalidTimeEntered = false;
+                        });
+                      },
+                      validator: (val) {
+                        return null;
+                      },
+                      onSaved: (val) {
+                        setState(() {
+                          timeEntered = true;
+                          invalidTimeEntered = false;
+                        });
+                      },
+                    ),
+                  const SizedBox(
                     height: 4,
                   ),
                   !invalidTimeEntered &&
@@ -257,13 +250,13 @@ class CreateRoutineState extends State {
                           style: primaryTextTheme.bodySmall!
                               .copyWith(color: Colors.red),
                         ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   if (routine == null)
                     Text('Routine frequency',
                         style: primaryTextTheme.headline6),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
                   frequencyEntered == null ||
@@ -345,35 +338,4 @@ class CreateRoutineState extends State {
     }
     return validated;
   }
-
-  // sheduleNotification() async {
-  //   await flutterLocalNotificationsPlugin.zonedSchedule(
-  //       0,
-  //       'scheduled title',
-  //       'scheduled body',
-  //       _nextInstanceOfHourlyAM(
-  //         10,
-  //         15,
-  //       ),
-  //       const NotificationDetails(
-  //           android: AndroidNotificationDetails(
-  //               'your channel id', 'your channel name',
-  //               channelDescription: 'your channel description')),
-  //       androidAllowWhileIdle: true,
-  //       uiLocalNotificationDateInterpretation:
-  //           UILocalNotificationDateInterpretation.absoluteTime);
-  // }
-
-  // tz.TZDateTime _nextInstanceOfHourlyAM(int hour, int minutes) {
-  //   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-  //   tz.TZDateTime scheduledDate =
-  //       tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minutes);
-  //   print(scheduledDate.minute);
-  //   print(scheduledDate.hour);
-  //   if (scheduledDate.isBefore(now)) {
-  //     scheduledDate = scheduledDate.add(const Duration(seconds: 5));
-  //   }
-  //   return scheduledDate;
-  // }
-
 }

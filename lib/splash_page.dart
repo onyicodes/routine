@@ -75,7 +75,7 @@ class _SplashScreenState extends State<SplashScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(Icons.calendar_month),
+                   const   Icon(Icons.calendar_month),
                       Text(
                         'My Routine App',
                         style: primaryTextTheme.headline5!

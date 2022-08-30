@@ -8,7 +8,7 @@ Future<TimeOfDay?> timePicker({required BuildContext context}) async {
   initialValue: DateTime.now().toString(),
   firstDate: DateTime(2000),
   lastDate: DateTime(2100),
-  icon: Icon(Icons.event),
+  icon:const Icon(Icons.event),
   dateLabelText: 'Date',
   timeLabelText: "Hour",
   selectableDayPredicate: (date) {
@@ -19,12 +19,9 @@ Future<TimeOfDay?> timePicker({required BuildContext context}) async {
 
     return true;
   },
-  onChanged: (val) => print(val),
   validator: (val) {
-    print(val);
     return null;
   },
-  onSaved: (val) => print(val),
 );
   TimeOfDay? timeOfDay;
   DateTime now = DateTime.now();
@@ -33,13 +30,13 @@ Future<TimeOfDay?> timePicker({required BuildContext context}) async {
       context: context,
       initialTime: TimeOfDay.fromDateTime(
         now.add(
-          Duration(minutes: 1),
+         const Duration(minutes: 1),
         ),
       ),
       builder: (BuildContext context, Widget? child) {
         return Theme(
           data: ThemeData(
-            colorScheme: ColorScheme.light(
+            colorScheme:const ColorScheme.light(
               primary: Colors.teal,
             ),
           ),
