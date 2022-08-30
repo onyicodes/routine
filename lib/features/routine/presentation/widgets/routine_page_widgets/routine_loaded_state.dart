@@ -126,7 +126,8 @@ class _RoutinListLoadedState extends State<RoutinListLoaded> {
                 itemBuilder: (context, index) {
                   
                   return Card(
-                    color: Theme.of(context).cardColor,
+                    color:routineStateManager
+                            .getActiveRoutineList[index].routineExpired? Colors.grey: Theme.of(context).cardColor,
                     elevation: 2.0,
                     child: ListTile(
                         title: Text(routineStateManager
@@ -143,6 +144,7 @@ class _RoutinListLoadedState extends State<RoutinListLoaded> {
                         }),
                   );
                 }),
+                const SizedBox(height: 50,)
           ],
         );
       }),

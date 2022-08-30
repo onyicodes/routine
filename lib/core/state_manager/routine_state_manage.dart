@@ -40,6 +40,7 @@ class RoutineStateManager extends ChangeNotifier {
             'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
       }
     }
+    _activeRoutineList.reversed;
 
     notifyListeners();
   }
@@ -60,6 +61,7 @@ class RoutineStateManager extends ChangeNotifier {
             'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
       }
     }
+    _activeRoutineList.reversed;
     notifyListeners();
   }
 
@@ -108,6 +110,7 @@ class RoutineStateManager extends ChangeNotifier {
             'Your have ${remainingTime.inMinutes} minutes more to the next routine check';
       }
     }
+    _activeRoutineList.reversed;
     notifyListeners();
   }
 

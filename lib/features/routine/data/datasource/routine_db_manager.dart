@@ -123,16 +123,27 @@ class RoutineDbManagerImpl implements RoutineDbManager {
  
     try {
       List<Map<String, dynamic>> routineList = await db
-          .rawQuery("SELECT * FROM $routineTable order by $colDate ASC");
+          .rawQuery("SELECT * FROM $routineTable order by $colDate Desc");
       List<Routine> allRoutine = <Routine>[];
       for (Map<String, dynamic> routine in routineList) {
-        if (DateTime.now().isBefore(DateTime.parse(routine[colDate])) && DateTime.now().add(const Duration(hours: 12)).isAfter(DateTime.parse(routine[colDate]))) {
+        if (DateTime.now().isAfter(DateTime.parse(routine[colDate]))) {
           Map<String, dynamic> modiefiedRoutine = {
             colTitle: routine[colTitle],
             colDescription: routine[colDescription],
             colDate: routine[colDate],
             colCompleted: routine[colCompleted] == 'true',
-            colExpired: routine[colExpired] == 'true',
+            colExpired: true,
+            colId: routine[colId],
+            colFrequency: routine[colFrequency]
+          };
+          allRoutine.add(RoutineModel.fromJson(modiefiedRoutine));
+        }else{
+          Map<String, dynamic> modiefiedRoutine = {
+            colTitle: routine[colTitle],
+            colDescription: routine[colDescription],
+            colDate: routine[colDate],
+            colCompleted: routine[colCompleted] == 'true',
+            colExpired:false,
             colId: routine[colId],
             colFrequency: routine[colFrequency]
           };
