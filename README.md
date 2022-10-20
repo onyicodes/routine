@@ -1,6 +1,6 @@
-#My routine app
+#My routine app - Implements clean architecture
 
-Routine app created with Flutter/dart - Implements clean architecture.
+Routine app created with Flutter/dart helps you manage your daily reocurring tasks. getting notifications before your next task.
 
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/onyedikareal)
 
